@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fetch = require("node-fetch");
 router.post("/", async (req, res) => {
+ try {
   let grade = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -27,5 +28,8 @@ router.post("/", async (req, res) => {
     }),
   }).then((res) => res.json());
   res.json({ grade: grade.choices[0].message.content });
+ }catch{
+ res.json({grade : "This feature is not available yet"})
+ }
 });
 module.exports = router;
