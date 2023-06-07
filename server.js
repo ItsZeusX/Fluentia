@@ -77,5 +77,5 @@ app.get("*", authenticateToken, (req, res) => {
 });
 let PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-  console.log("Server started on port localhost:5000");
+  console.log("Server started on port localhost:"+PORT);
 });
