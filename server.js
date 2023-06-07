@@ -75,7 +75,7 @@ app.get("/register", (req, res) => {
 app.get("*", authenticateToken, (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "app.html"));
 });
-
-app.listen(process.env.PORT || 3000, () => {
+let PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
   console.log("Server started on port localhost:5000");
 });
