@@ -2,6 +2,7 @@ const express = require("express");
 const Mission = require("../schemas/Mission");
 const router = express.Router();
 const authenticateToken = require("../middleware/authenticateToken");
+const config = require("../config.json");
 
 //* Get Lesson Activities (without activity content)
 router.get("/", authenticateToken, async (req, res) => {
@@ -122,7 +123,7 @@ router.get("/", authenticateToken, async (req, res) => {
       },
       { $set: { title: "$_id" } },
       { $unset: "_id" },
-    ]).limit(10);
+    ]).limit(config.search_limit);
 
     if (searchResults === null) {
       res.status(404).send("Lesson not found");

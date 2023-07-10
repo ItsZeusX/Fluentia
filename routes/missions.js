@@ -59,7 +59,6 @@ router.get("/", authenticateToken, async (req, res) => {
         },
       },
     ]);
-
     // Send the documents as a JSON response
     res.json(missions);
   } catch (error) {

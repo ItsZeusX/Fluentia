@@ -17,6 +17,10 @@ const activitySchema = new mongoose.Schema(
     },
     score: Number,
     status: String,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     activityType: {
       type: String,
       required: true,
@@ -28,4 +32,4 @@ const activitySchema = new mongoose.Schema(
   }
 );
 
-module.exports =  mongoose.model("Activity", activitySchema);
+module.exports = mongoose.model("Activity", activitySchema);

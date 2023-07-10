@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const missionSchema = new mongoose.Schema({
   externalId: {
-    type : String,
-    required : true,
+    type: String,
+    required: true,
   },
   title: String,
   image: String,
@@ -11,7 +11,11 @@ const missionSchema = new mongoose.Schema({
   highlighted: Boolean,
   validated: Boolean,
   level: String,
-  lessons: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' }]
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  lessons: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lesson" }],
 });
 
-module.exports = mongoose.model('Mission', missionSchema);
+module.exports = mongoose.model("Mission", missionSchema);

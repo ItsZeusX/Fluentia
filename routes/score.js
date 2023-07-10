@@ -1,7 +1,8 @@
 const express = require("express");
 const authenticateToken = require("../middleware/authenticateToken");
-
 const router = express.Router();
+
+const config = require("../config.json");
 
 const User = require("../schemas/User");
 
@@ -15,7 +16,13 @@ router.post("/", authenticateToken, async (req, res) => {
     {
       $set: {
         "scores.$[element].score": req.body.score,
-        "scores.$[element].status": req.body.status,
+        "scores.$[element].status":
+          req.body.score >= config.minimum_score_percentage
+            ? "PASSED"
+            : "FAILED",
+      },
+      $inc: {
+        timeSpent: req.body.timeSpent,
       },
     },
     {
@@ -32,11 +39,18 @@ router.post("/", authenticateToken, async (req, res) => {
         email: req.user.email,
       },
       {
+        $inc: {
+          gems: req.body.gems,
+          timeSpent: req.body.timeSpent,
+        },
         $push: {
           scores: {
             externalActivityId: req.body.externalActivityId,
             score: req.body.score,
-            status: req.body.status,
+            status:
+              req.body.score >= config.minimum_score_percentage
+                ? "PASSED"
+                : "FAILED",
           },
         },
       },

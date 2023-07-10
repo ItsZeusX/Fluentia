@@ -1,0 +1,7 @@
+{
+  "minimum_score_percentage": 75,
+  "search_limit": 10,
+  "leaderboard_limit": 5,
+  "show_correction": true,
+  "maintenance": false
+}

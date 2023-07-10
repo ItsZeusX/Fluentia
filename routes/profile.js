@@ -42,6 +42,7 @@ router.get("/", authenticateToken, async (req, res) => {
           username: "$username",
           email: "$email",
           image: "$image",
+          timeSpent: "$timeSpent",
           passedMissions: {
             $size: "$passedMissions",
           },
