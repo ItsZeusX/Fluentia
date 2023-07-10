@@ -49,7 +49,7 @@ const authenticateToken = require("./middleware/authenticateToken");
 const Maintenance = require("./middleware/checkIfMaintenance");
 
 const fileUpload = require("express-fileupload");
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 
 // Connect to database
 // mongoose.connect("mongodb://127.0.0.1:27017/Altissia");
